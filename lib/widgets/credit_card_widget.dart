@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mycards/models/credit_card.dart';
 
 class CreditCardWidget extends StatelessWidget {
@@ -6,6 +7,13 @@ class CreditCardWidget extends StatelessWidget {
   static const double aspectRatioCard = 1.586;
 
   CreditCardWidget(this.card);
+
+  void cardNumberClipboard(BuildContext context) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Card number copied to clipboard."),
+    ));
+    Clipboard.setData(ClipboardData(text: card.cardNumber));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +75,19 @@ class CreditCardWidget extends StatelessWidget {
                     ),
                     Flexible(
                       flex: 12,
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          card.cardNumber,
-                          style: TextStyle(
-                            fontFamily: 'Farrington-7B',
-                            letterSpacing: 4,
-                            wordSpacing: 10,
-                            fontSize: 16,
+                      child: InkWell(
+                        onTap: () => cardNumberClipboard(context),
+                        onLongPress: () => cardNumberClipboard(context),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            card.cardNumber,
+                            style: TextStyle(
+                              fontFamily: 'Farrington-7B',
+                              letterSpacing: 4,
+                              wordSpacing: 10,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
