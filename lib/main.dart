@@ -69,11 +69,7 @@ class Home extends StatelessWidget {
         title: Text("MyCards"),
       ),
       body: Center(
-        child: Column(
-          children: <Widget>[
-            CardList(_creditCards),
-          ],
-        ),
+        child: CardList(_creditCards),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Increment',
