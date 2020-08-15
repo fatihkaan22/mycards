@@ -3,6 +3,7 @@ import 'package:mycards/models/credit_card.dart';
 
 class CreditCardWidget extends StatelessWidget {
   final CreditCard card;
+  static const double aspectRatioCard = 1.586;
 
   CreditCardWidget(this.card);
 
@@ -13,7 +14,7 @@ class CreditCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AspectRatio(
-            aspectRatio: 1.586,
+            aspectRatio: aspectRatioCard,
             child: Container(
               width: double.infinity,
               child: Card(

@@ -17,12 +17,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class Home extends StatelessWidget {
   final List<CreditCard> _creditCards = [
     CreditCard(
       id: 'c1',
@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
       name: "Fatih Kaan Salgir",
       date: "07/24",
       color: Colors.orange,
-      backgorund: Colors.black26, 
+      backgorund: Colors.black26,
     ),
     CreditCard(
       id: 'c2',
@@ -40,7 +40,7 @@ class MyHomePage extends StatelessWidget {
       name: "Fatih Kaan Salgir",
       date: "07/24",
       color: Colors.purple,
-      backgorund: Colors.white24, 
+      backgorund: Colors.white24,
     ),
     CreditCard(
       id: 'c1',
@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
       name: "Fatih Kaan Salgir",
       date: "07/24",
       color: Colors.orange,
-      backgorund: Colors.black26, 
+      backgorund: Colors.black26,
     ),
     CreditCard(
       id: 'c2',
@@ -58,7 +58,7 @@ class MyHomePage extends StatelessWidget {
       name: "Fatih Kaan Salgir",
       date: "07/24",
       color: Colors.purple,
-      backgorund: Colors.white24, 
+      backgorund: Colors.white24,
     ),
   ];
 
@@ -82,5 +82,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-class CreditCardList {}
