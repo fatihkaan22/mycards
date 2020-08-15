@@ -9,6 +9,7 @@ class CreditCardWidget extends StatelessWidget {
   CreditCardWidget(this.card);
 
   void cardNumberClipboard(BuildContext context) {
+    Scaffold.of(context).removeCurrentSnackBar();
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text("Card number copied to clipboard."),
     ));
