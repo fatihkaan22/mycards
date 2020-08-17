@@ -76,20 +76,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_page_indicator:
-    dependency: transitive
-    description:
-      name: flutter_page_indicator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.3"
-  flutter_swiper:
-    dependency: "direct main"
-    description:
-      name: flutter_swiper
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -191,13 +177,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.15"
-  transformer_page_view:
-    dependency: transitive
+  turkish:
+    dependency: "direct main"
     description:
-      name: transformer_page_view
+      name: turkish
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.6"
+    version: "0.1.0+2"
   typed_data:
     dependency: transitive
     description:
@@ -221,4 +207,3 @@ packages:
     version: "3.6.1"
 sdks:
   dart: ">=2.8.0 <3.0.0"
-  flutter: ">=0.1.4 <3.0.0"

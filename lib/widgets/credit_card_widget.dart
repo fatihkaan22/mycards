@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mycards/models/credit_card.dart';
+import 'package:turkish/turkish.dart';
 
 class CreditCardWidget extends StatelessWidget {
   final CreditCard card;
@@ -88,7 +89,7 @@ class CreditCardWidget extends StatelessWidget {
                           child: Container(
                             alignment: Alignment.center,
                             child: Text(
-                              card.cardNumber,
+                              card.getCardNumberSpaced(),
                               style: TextStyle(
                                 fontFamily: 'Farrington-7B',
                                 letterSpacing: 4,
@@ -129,7 +130,9 @@ class CreditCardWidget extends StatelessWidget {
                               left: MediaQuery.of(context).size.width / 10,
                               bottom: 20),
                           child: Text(
-                            card.name.toUpperCase(),
+                            card.name,
+                            // card.name.toUpperCase(),
+                            // turkish.toUpperCase(card.name),
                             style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Farrington-7B',

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mycards/models/credit_card.dart';
 import 'package:mycards/widgets/credit_card_widget.dart';
+import 'package:mycards/widgets/selected_widget.dart';
 
 import 'widgets/credit_card_list.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,154 +34,122 @@ class _HomeState extends State<Home> {
     CreditCard(
       id: 'c1',
       title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.orange,
-      backgorund: Colors.red[700],
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.purple,
-      backgorund: Colors.deepOrange,
-    ),
-    CreditCard(
-      id: 'c1',
-      title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.orange,
-      backgorund: Colors.deepPurple,
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.purple,
-      backgorund: Colors.pink[700],
-    ),
-    CreditCard(
-      id: 'c1',
-      title: 'Akbank',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.orange,
-      backgorund: Colors.red[700],
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'Deneme',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
-      date: "07/24",
-      color: Colors.blue,
-      backgorund: Colors.orange[700],
-    ),
-    CreditCard(
-      id: 'c1',
-      title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
       color: Colors.amber,
+      cvv: '123',
       backgorund: Colors.blue[700],
     ),
     CreditCard(
       id: 'c2',
       title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
       color: Colors.indigo,
+      cvv: '123',
       backgorund: Colors.green[700],
     ),
     CreditCard(
       id: 'c1',
       title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
       color: Colors.orange,
+      cvv: '123',
       backgorund: Colors.red[700],
     ),
     CreditCard(
       id: 'c2',
       title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
+      cvv: '123',
       color: Colors.purple,
       backgorund: Colors.deepOrange,
     ),
     CreditCard(
       id: 'c1',
       title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
+      cvv: '123',
       color: Colors.orange,
       backgorund: Colors.deepPurple,
     ),
     CreditCard(
       id: 'c2',
       title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
+      cvv: '123',
       color: Colors.purple,
       backgorund: Colors.pink[700],
     ),
     CreditCard(
       id: 'c1',
       title: 'Akbank',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
+      cvv: '123',
       color: Colors.orange,
       backgorund: Colors.red[700],
     ),
     CreditCard(
       id: 'c2',
       title: 'Deneme',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "FATİH KAAN SALGIR",
       date: "07/24",
+      cvv: '123',
       color: Colors.blue,
       backgorund: Colors.orange[700],
     ),
     CreditCard(
       id: 'c1',
       title: 'YapıKredi Play Card',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "Fatih Kaan Salgır",
       date: "07/24",
+      cvv: '123',
       color: Colors.amber,
       backgorund: Colors.blue[700],
     ),
     CreditCard(
       id: 'c2',
       title: 'EnCard',
-      cardNumber: '1234 5678 91011 1234',
-      name: "Fatih Kaan Salgir",
+      cardNumber: '12345678910111234',
+      name: "Fatİh Kaan Salgır",
       date: "07/24",
+      cvv: '123',
       color: Colors.indigo,
       backgorund: Colors.green[700],
     ),
   ];
 
   CreditCard selectedCard;
+  bool _frontFace;
 
   void _selectCard(CreditCard c) {
     setState(() {
       selectedCard = c;
+      _frontFace = true;
+    });
+  }
+
+  void _turnCard() {
+    print("drag");
+    setState(() {
+      if (_frontFace)
+        _frontFace = false;
+      else
+        _frontFace = true;
     });
   }
 
@@ -194,7 +162,9 @@ class _HomeState extends State<Home> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (selectedCard != null) CreditCardWidget(selectedCard, _selectCard),
+          if (selectedCard != null)
+            SelectedCardWidget(
+                selectedCard, _selectCard, _turnCard, _frontFace),
           Container(
               margin: EdgeInsets.all(5),
               alignment: Alignment.topLeft,
@@ -206,61 +176,10 @@ class _HomeState extends State<Home> {
           CardList(_creditCards, _selectCard),
         ],
       ),
-
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton:
+          FloatingActionButton(tooltip: 'More', child: Icon(Icons.more_vert)),
+      //add new card
+      //edit card
     );
   }
 }
-
-//   color: Colors.black,
-//   child: Swiper(
-//     itemBuilder: (BuildContext context, int index) {
-//       return CreditCardWidget(_creditCards[index]);
-//     },
-//     itemCount: _creditCards.length,
-//     pagination: SwiperPagination(
-//         builder: SwiperPagination.fraction,
-//         alignment: Alignment.topRight),
-//     // control: SwiperControl(),
-//     scrollDirection: Axis.vertical,
-//     itemWidth: 400,
-//     itemHeight: 500,
-//     layout: SwiperLayout.CUSTOM,
-//     customLayoutOption: CustomLayoutOption(
-//       startIndex: 0,
-//       stateCount: 8,
-//       // ).addRotate(
-//       //   [
-//       //     // rotation of every item
-//       //     -45.0 / 180,
-//       //     0.0,
-//       //     45.0 / 180
-//       //   ],
-//     )
-//         .addTranslate(
-//           [
-//             Offset(0, 0),
-//             Offset(0, 50.0),
-//             Offset(0, 100.0),
-//             Offset(0, 150.0),
-//             Offset(0, 200.0),
-//             Offset(0, 250.0),
-//             Offset(0, 300.0),
-//             Offset(0, 350.0),
-//           ],
-//         )
-//         .addOpacity(
-//           List.from(List<double>.generate(
-//               _creditCards.length, (index) => 1 - index * 0.1).reversed),
-//           // [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-//         )
-//         .addScale(
-//           List.from(List<double>.generate(
-//               _creditCards.length, (index) => 1 - index * 0.05).reversed),
-//           Alignment.center,
-//         ),
-//   ),
-// ),
