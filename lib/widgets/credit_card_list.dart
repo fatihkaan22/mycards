@@ -13,10 +13,21 @@ class CardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: SingleChildScrollView(
-        child: ColumnSuper(
-          innerDistance: -200,
-          children: cards.map((e) => CreditCardWidget(e, _selectCard)).toList(),
+      child: Card(
+        elevation: 100,
+        margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: ClipPath(
+          clipper: ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12))),
+          child: SingleChildScrollView(
+            child: ColumnSuper(
+              innerDistance: -180,
+              children:
+                  cards.map((e) => CreditCardWidget(e, _selectCard)).toList(),
+            ),
+          ),
         ),
       ),
     );

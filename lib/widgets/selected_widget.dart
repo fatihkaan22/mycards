@@ -10,21 +10,21 @@ class SelectedCardWidget extends StatefulWidget {
   final Function _turnCard;
   final bool frontFace;
 
-  SelectedCardWidget(this._selectedCard, this._selectCard, this._turnCard, this.frontFace);
+  SelectedCardWidget(
+      this._selectedCard, this._selectCard, this._turnCard, this.frontFace);
 
   @override
   _SelectedCardWidgetState createState() => _SelectedCardWidgetState();
 }
 
 class _SelectedCardWidgetState extends State<SelectedCardWidget> {
-
   @override
   Widget build(BuildContext context) {
     Widget _child;
     if (widget.frontFace) {
       _child = CreditCardWidget(widget._selectedCard, widget._selectCard);
     } else {
-      _child = CreditCardBackWidget(widget._selectedCard);
+      _child = CreditCardBackWidget.noFunction(widget._selectedCard);
     }
 
     return GestureDetector(

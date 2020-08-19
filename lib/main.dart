@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:mycards/models/credit_card.dart';
 import 'package:mycards/widgets/credit_card_widget.dart';
 import 'package:mycards/widgets/selected_widget.dart';
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MyCards',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.blueGrey,
+        primaryColor: Colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Home(),
@@ -156,28 +158,85 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("MyCards"),
+      // appBar: AppBar(
+      //   title: Text("MyCards"),
+      // ),
+      body: Container(
+        color: Colors.white54,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (selectedCard != null)
+              Container(
+                margin: EdgeInsets.all(10),
+                child: SelectedCardWidget(
+                    selectedCard, _selectCard, _turnCard, _frontFace),
+              ),
+            Container(
+                margin: EdgeInsets.only(
+                  left: 20,
+                  top: 5,
+                ),
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Wallet',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(0.0, 10.0),
+                        blurRadius: 70.0,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ],
+                  ),
+                )),
+            CardList(_creditCards, _selectCard),
+          ],
+        ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
+      floatingActionButton: SpeedDial(
+        // both default to 16
+        marginRight: 18,
+        marginBottom: 20,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22.0),
+        // this is ignored if animatedIcon is non null
+        // child: Icon(Icons.add),
+        visible: true,
+        // If true user is forced to close dial manually
+        // by tapping main button and overlay is not rendered.
+        closeManually: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: () => print('OPENING DIAL'),
+        onClose: () => print('DIAL CLOSED'),
+        tooltip: 'Menu',
+        heroTag: 'speed-dial-hero-tag',
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 8.0,
+        shape: CircleBorder(),
         children: [
-          if (selectedCard != null)
-            SelectedCardWidget(
-                selectedCard, _selectCard, _turnCard, _frontFace),
-          Container(
-              margin: EdgeInsets.all(5),
-              alignment: Alignment.topLeft,
-              child: Text(
-                'Wallet',
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-              )),
-          CardList(_creditCards, _selectCard),
+          SpeedDialChild(
+              child: Icon(Icons.add),
+              backgroundColor: Colors.red,
+              label: 'Add',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => print('FIRST CHILD')),
+          SpeedDialChild(
+            child: Icon(Icons.brush),
+            backgroundColor: Colors.blue,
+            label: 'Edit',
+            labelStyle: TextStyle(fontSize: 18.0),
+            onTap: () => print('SECOND CHILD'),
+          ),
         ],
       ),
-      floatingActionButton:
-          FloatingActionButton(tooltip: 'More', child: Icon(Icons.more_vert)),
       //add new card
       //edit card
     );
