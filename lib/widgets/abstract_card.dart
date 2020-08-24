@@ -20,23 +20,18 @@ abstract class AbstractCard extends StatelessWidget {
         children: <Widget>[
           AspectRatio(
             aspectRatio: aspectRatioCard,
-            child: InkWell(
-              onTap: () {
-                _selectCard(card);
-              },
-              child: Container(
-                width: double.infinity,
-                child: Card(
-                  color: card.backgorund,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 30,
-                  margin: EdgeInsets.all(0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: construct(context),
-                  ),
+            child: Container(
+              width: double.infinity,
+              child: Card(
+                color: card.backgorund,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                elevation: 30,
+                margin: EdgeInsets.only(bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: construct(context),
                 ),
               ),
             ),

@@ -16,6 +16,14 @@ class CreditCardWidget extends AbstractCard {
     Clipboard.setData(ClipboardData(text: card.cardNumber));
   }
 
+  void cardNameClipboard(BuildContext context) {
+    Scaffold.of(context).removeCurrentSnackBar();
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Card holder name copied to clipboard."),
+    ));
+    Clipboard.setData(ClipboardData(text: card.name));
+  }
+
   @override
   List<Widget> construct(context) {
     return [
@@ -108,13 +116,17 @@ class CreditCardWidget extends AbstractCard {
         child: Container(
           margin: EdgeInsets.only(
               left: MediaQuery.of(context).size.width / 10, bottom: 20),
-          child: Text(
-            card.name,
-            // card.name.toUpperCase(),
-            // turkish.toUpperCase(card.name),
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'Farrington-7B',
+          child: InkWell(
+            onTap: () => cardNameClipboard(context),
+            onLongPress: () => cardNameClipboard(context),
+            child: Text(
+              card.name,
+              // card.name.toUpperCase(),
+              // turkish.toUpperCase(card.name),
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Farrington-7B',
+              ),
             ),
           ),
         ),

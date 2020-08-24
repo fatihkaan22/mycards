@@ -15,17 +15,29 @@ class CardList extends StatelessWidget {
     return Flexible(
       child: Card(
         elevation: 100,
-        margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+        margin: EdgeInsets.only(left: 10, right: 10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ClipPath(
           clipper: ShapeBorderClipper(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12))),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          )),
           child: SingleChildScrollView(
             child: ColumnSuper(
               innerDistance: -180,
-              children:
-                  cards.map((e) => CreditCardWidget(e, _selectCard)).toList(),
+              children: cards
+                  .map(
+                    (e) => InkWell(
+                      onTap: () {
+                        _selectCard(e);
+                      },
+                      child: CreditCardWidget(e, _selectCard),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
         ),

@@ -1,8 +1,10 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:mycards/models/credit_card.dart';
+import 'package:mycards/widgets/add_new_card.dart';
+import 'package:mycards/widgets/credit_card_back_widget.dart';
 import 'package:mycards/widgets/credit_card_widget.dart';
-import 'package:mycards/widgets/selected_widget.dart';
 
 import 'widgets/credit_card_list.dart';
 
@@ -136,27 +138,17 @@ class _HomeState extends State<Home> {
   ];
 
   CreditCard selectedCard;
-  bool _frontFace;
 
   void _selectCard(CreditCard c) {
     setState(() {
       selectedCard = c;
-      _frontFace = true;
-    });
-  }
-
-  void _turnCard() {
-    print("drag");
-    setState(() {
-      if (_frontFace)
-        _frontFace = false;
-      else
-        _frontFace = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("MyCards"),
@@ -167,11 +159,25 @@ class _HomeState extends State<Home> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (selectedCard != null)
-              Container(
-                margin: EdgeInsets.all(10),
-                child: SelectedCardWidget(
-                    selectedCard, _selectCard, _turnCard, _frontFace),
+              GestureDetector(
+                onTap: () => cardKey.currentState.toggleCard(),
+                onHorizontalDragStart: (_) => cardKey.currentState.toggleCard(),
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: FlipCard(
+                    key: cardKey,
+                    direction: FlipDirection.HORIZONTAL,
+                    front: CreditCardWidget(selectedCard, _selectCard),
+                    back: CreditCardBackWidget.noFunction(selectedCard),
+                  ),
+                ),
               ),
+
+            // Container(
+            //   margin: EdgeInsets.all(10),
+            //   child: SelectedCardWidget(
+            //       selectedCard, _selectCard, _turnCard, _frontFace),
+            // ),
             Container(
                 margin: EdgeInsets.only(
                   left: 20,
@@ -217,28 +223,35 @@ class _HomeState extends State<Home> {
         onClose: () => print('DIAL CLOSED'),
         tooltip: 'Menu',
         heroTag: 'speed-dial-hero-tag',
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         elevation: 8.0,
         shape: CircleBorder(),
         children: [
           SpeedDialChild(
               child: Icon(Icons.add),
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.black,
               label: 'Add',
               labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () => print('FIRST CHILD')),
+              onTap: () => startAddNewCard(context)),
           SpeedDialChild(
-            child: Icon(Icons.brush),
-            backgroundColor: Colors.blue,
+            child: Icon(Icons.edit),
+            backgroundColor: Colors.black,
             label: 'Edit',
             labelStyle: TextStyle(fontSize: 18.0),
             onTap: () => print('SECOND CHILD'),
           ),
         ],
       ),
-      //add new card
-      //edit card
     );
+  }
+
+  startAddNewCard(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        builder: (_) {
+          return NewCard();
+        });
   }
 }

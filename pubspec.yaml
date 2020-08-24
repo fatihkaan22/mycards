@@ -26,6 +26,7 @@ dependencies:
   assorted_layout_widgets: ^1.3.2
   turkish: '>=0.1.0'
   flutter_speed_dial: ^1.2.5
+  flip_card: ^0.4.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
