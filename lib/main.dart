@@ -1,6 +1,5 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:mycards/models/credit_card.dart';
 import 'package:mycards/widgets/add_new_card.dart';
 import 'package:mycards/widgets/credit_card_back_widget.dart';
@@ -36,16 +35,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<CreditCard> _creditCards = [
     CreditCard(
-      id: 'c1',
-      title: 'YapıKredi Play Card',
-      cardNumber: '12345678910111234',
-      name: "FATİH KAAN SALGIR",
-      date: "07/24",
-      color: Colors.amber,
-      cvv: '123',
-      backgorund: Colors.blue[700],
-    ),
-    CreditCard(
       id: 'c2',
       title: 'EnCard',
       cardNumber: '12345678910111234',
@@ -53,7 +42,7 @@ class _HomeState extends State<Home> {
       date: "07/24",
       color: Colors.indigo,
       cvv: '123',
-      backgorund: Colors.green[700],
+      background: Colors.green[700],
     ),
     CreditCard(
       id: 'c1',
@@ -63,7 +52,7 @@ class _HomeState extends State<Home> {
       date: "07/24",
       color: Colors.orange,
       cvv: '123',
-      backgorund: Colors.red[700],
+      background: Colors.yellow[700],
     ),
     CreditCard(
       id: 'c2',
@@ -73,7 +62,7 @@ class _HomeState extends State<Home> {
       date: "07/24",
       cvv: '123',
       color: Colors.purple,
-      backgorund: Colors.deepOrange,
+      background: Colors.deepOrange,
     ),
     CreditCard(
       id: 'c1',
@@ -83,59 +72,32 @@ class _HomeState extends State<Home> {
       date: "07/24",
       cvv: '123',
       color: Colors.orange,
-      backgorund: Colors.deepPurple,
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'EnCard',
-      cardNumber: '12345678910111234',
-      name: "FATİH KAAN SALGIR",
-      date: "07/24",
-      cvv: '123',
-      color: Colors.purple,
-      backgorund: Colors.pink[700],
-    ),
-    CreditCard(
-      id: 'c1',
-      title: 'Akbank',
-      cardNumber: '12345678910111234',
-      name: "FATİH KAAN SALGIR",
-      date: "07/24",
-      cvv: '123',
-      color: Colors.orange,
-      backgorund: Colors.red[700],
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'Deneme',
-      cardNumber: '12345678910111234',
-      name: "FATİH KAAN SALGIR",
-      date: "07/24",
-      cvv: '123',
-      color: Colors.blue,
-      backgorund: Colors.orange[700],
-    ),
-    CreditCard(
-      id: 'c1',
-      title: 'YapıKredi Play Card',
-      cardNumber: '12345678910111234',
-      name: "Fatih Kaan Salgır",
-      date: "07/24",
-      cvv: '123',
-      color: Colors.amber,
-      backgorund: Colors.blue[700],
-    ),
-    CreditCard(
-      id: 'c2',
-      title: 'EnCard',
-      cardNumber: '12345678910111234',
-      name: "Fatİh Kaan Salgır",
-      date: "07/24",
-      cvv: '123',
-      color: Colors.indigo,
-      backgorund: Colors.green[700],
+      background: Colors.deepPurple,
     ),
   ];
+
+  void addCardToList(CreditCard c) {
+    setState(() {
+      _creditCards.add(c);
+    });
+  }
+
+  void removeCardFromList(BuildContext context) {
+    CreditCard backup = selectedCard;
+    if (selectedCard != null) {
+      setState(() {
+        _creditCards.remove(selectedCard);
+        selectedCard = null;
+      });
+    }
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Card is removed."),
+      action: SnackBarAction(
+        label: "Undo",
+        onPressed: () => addCardToList(backup),
+      ),
+    ));
+  }
 
   CreditCard selectedCard;
 
@@ -159,25 +121,22 @@ class _HomeState extends State<Home> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (selectedCard != null)
-              GestureDetector(
-                onTap: () => cardKey.currentState.toggleCard(),
-                onHorizontalDragStart: (_) => cardKey.currentState.toggleCard(),
-                child: Container(
-                  margin: EdgeInsets.all(10),
-                  child: FlipCard(
-                    key: cardKey,
-                    direction: FlipDirection.HORIZONTAL,
-                    front: CreditCardWidget(selectedCard, _selectCard),
-                    back: CreditCardBackWidget.noFunction(selectedCard),
+              Visibility(
+                child: GestureDetector(
+                  onTap: () => cardKey.currentState.toggleCard(),
+                  onHorizontalDragStart: (_) =>
+                      cardKey.currentState.toggleCard(),
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    child: FlipCard(
+                      key: cardKey,
+                      direction: FlipDirection.HORIZONTAL,
+                      front: CreditCardWidget(selectedCard),
+                      back: CreditCardBackWidget.noFunction(selectedCard),
+                    ),
                   ),
                 ),
               ),
-
-            // Container(
-            //   margin: EdgeInsets.all(10),
-            //   child: SelectedCardWidget(
-            //       selectedCard, _selectCard, _turnCard, _frontFace),
-            // ),
             Container(
                 margin: EdgeInsets.only(
                   left: 20,
@@ -204,45 +163,54 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      floatingActionButton: SpeedDial(
-        // both default to 16
-        marginRight: 18,
-        marginBottom: 20,
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22.0),
-        // this is ignored if animatedIcon is non null
-        // child: Icon(Icons.add),
-        visible: true,
-        // If true user is forced to close dial manually
-        // by tapping main button and overlay is not rendered.
-        closeManually: false,
-        curve: Curves.bounceIn,
-        overlayColor: Colors.black,
-        overlayOpacity: 0.5,
-        onOpen: () => print('OPENING DIAL'),
-        onClose: () => print('DIAL CLOSED'),
-        tooltip: 'Menu',
-        heroTag: 'speed-dial-hero-tag',
+
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        elevation: 8.0,
-        shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-              child: Icon(Icons.add),
-              backgroundColor: Colors.black,
-              label: 'Add',
-              labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () => startAddNewCard(context)),
-          SpeedDialChild(
-            child: Icon(Icons.edit),
-            backgroundColor: Colors.black,
-            label: 'Edit',
-            labelStyle: TextStyle(fontSize: 18.0),
-            onTap: () => print('SECOND CHILD'),
-          ),
-        ],
+        child: Icon(Icons.add),
+        onPressed: () => startAddNewCard(context),
       ),
+
+      // floatingActionButton: SpeedDial(
+      //   // both default to 16
+      //   marginRight: 18,
+      //   marginBottom: 20,
+      //   animatedIcon: AnimatedIcons.menu_close,
+      //   animatedIconTheme: IconThemeData(size: 22.0),
+      //   // this is ignored if animatedIcon is non null
+      //   // child: Icon(Icons.add),
+      //   visible: true,
+      //   // If true user is forced to close dial manually
+      //   // by tapping main button and overlay is not rendered.
+      //   closeManually: false,
+      //   curve: Curves.bounceIn,
+      //   overlayColor: Colors.black,
+      //   overlayOpacity: 0.5,
+      //   onOpen: () => print('OPENING DIAL'),
+      //   onClose: () => print('DIAL CLOSED'),
+      //   tooltip: 'Menu',
+      //   heroTag: 'speed-dial-hero-tag',
+      //   backgroundColor: Colors.black,
+      //   foregroundColor: Colors.white,
+      //   elevation: 8.0,
+      //   shape: CircleBorder(),
+      //   children: [
+      //     SpeedDialChild(
+      //         child: Icon(Icons.add),
+      //         backgroundColor: Colors.black,
+      //         label: 'Add',
+      //         labelStyle: TextStyle(fontSize: 18.0),
+      //         onTap: () => startAddNewCard(context)),
+      //     SpeedDialChild(
+      //       child: Icon(Icons.delete),
+      //       backgroundColor: Colors.black,
+      //       label: 'Remove',
+      //       labelStyle: TextStyle(fontSize: 18.0),
+      //       onTap: () {
+      //         removeCardFromList(context);
+      //       },
+      //     ),
+      //   ],
+      // ),
     );
   }
 
@@ -250,8 +218,21 @@ class _HomeState extends State<Home> {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+        ),
         builder: (_) {
-          return NewCard();
+          return SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.75,
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: NewCard(addCardToList),
+            ),
+          );
         });
   }
 }

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mycards/models/credit_card.dart';
-import 'package:turkish/turkish.dart';
 
-abstract class AbstractCard extends StatelessWidget {
-  final CreditCard card;
+class AbstractCard extends StatelessWidget {
   static const double aspectRatioCard = 1.586;
-  final Function _selectCard;
 
-  AbstractCard(this.card, this._selectCard);
+  final CreditCard card;
+  // final Function _selectCard;
+  final List<Widget> children;
 
-  List<Widget> construct(BuildContext context);
+  AbstractCard({this.card, this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +17,19 @@ abstract class AbstractCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AspectRatio(
-            aspectRatio: aspectRatioCard,
+            aspectRatio: AbstractCard.aspectRatioCard,
             child: Container(
               width: double.infinity,
               child: Card(
-                color: card.backgorund,
+                color: card.background,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 elevation: 30,
                 margin: EdgeInsets.only(bottom: 10),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: construct(context),
-                ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: children),
               ),
             ),
           ),

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'editible_card.dart';
+import 'package:mycards/models/credit_card.dart';
 
 class CardNumberPart extends StatelessWidget {
   final TextEditingController _controller;
   final FocusNode currentFocusNode;
   final FocusNode nextFocus;
+  final Color textColor;
+  final CreditCard card;
+  final int id;
 
-  CardNumberPart(this._controller, this.currentFocusNode, this.nextFocus);
+  CardNumberPart(this._controller, this.currentFocusNode, this.nextFocus,
+      this.textColor, this.card, this.id);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class CardNumberPart extends StatelessWidget {
           if (newVal.length == 4) {
             FocusScope.of(context).requestFocus(nextFocus);
           }
+          card.updateNumber(id, newVal);
         },
         inputFormatters: [
           WhitelistingTextInputFormatter(RegExp(r"[0-9]")),
@@ -34,6 +38,7 @@ class CardNumberPart extends StatelessWidget {
         decoration: InputDecoration(contentPadding: EdgeInsets.all(10)),
         // card.getCardNumberSpaced(),
         style: TextStyle(
+          color: textColor,
           fontFamily: 'Farrington-7B',
           letterSpacing: 4,
           wordSpacing: 10,

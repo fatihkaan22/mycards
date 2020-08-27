@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mycards/models/credit_card.dart';
 import 'package:mycards/widgets/abstract_card.dart';
-import 'package:turkish/turkish.dart';
 
-class CreditCardWidget extends AbstractCard {
-  CreditCardWidget(CreditCard card, Function selectCard)
-      : super(card, selectCard);
+class CreditCardWidget extends StatelessWidget {
+  final CreditCard card;
+  // final Function _selectCard;
+
+  CreditCardWidget(this.card);
 
   void cardNumberClipboard(BuildContext context) {
     Scaffold.of(context).removeCurrentSnackBar();
@@ -25,8 +26,8 @@ class CreditCardWidget extends AbstractCard {
   }
 
   @override
-  List<Widget> construct(context) {
-    return [
+  Widget build(context) {
+    return AbstractCard(card: card, children: [
       Flexible(
         flex: 12,
         child: Container(
@@ -43,7 +44,7 @@ class CreditCardWidget extends AbstractCard {
           child: Text(
             card.title,
             style: TextStyle(
-              color: Colors.white70,
+              color: card.titleColor,
               fontSize: 18,
             ),
           ),
@@ -79,6 +80,7 @@ class CreditCardWidget extends AbstractCard {
             child: Text(
               card.getCardNumberSpaced(),
               style: TextStyle(
+                color: card.textColor,
                 fontFamily: 'Farrington-7B',
                 letterSpacing: 4,
                 wordSpacing: 10,
@@ -98,12 +100,16 @@ class CreditCardWidget extends AbstractCard {
               Container(
                 child: Text(
                   "VALID\nTHRU       ",
-                  style: TextStyle(fontSize: 7),
+                  style: TextStyle(
+                    color: card.textColor,
+                    fontSize: 7,
+                  ),
                 ),
               ),
               Text(
                 card.date,
                 style: TextStyle(
+                  color: card.textColor,
                   fontSize: 16,
                 ),
               ),
@@ -124,6 +130,7 @@ class CreditCardWidget extends AbstractCard {
               // card.name.toUpperCase(),
               // turkish.toUpperCase(card.name),
               style: TextStyle(
+                color: card.textColor,
                 fontSize: 16,
                 fontFamily: 'Farrington-7B',
               ),
@@ -131,6 +138,6 @@ class CreditCardWidget extends AbstractCard {
           ),
         ),
       ),
-    ];
+    ]);
   }
 }

@@ -34,7 +34,8 @@ class CardList extends StatelessWidget {
                       onTap: () {
                         _selectCard(e);
                       },
-                      child: CreditCardWidget(e, _selectCard),
+                      // child: CreditCardWidget(e, _selectCard),
+                      child: CreditCardWidget(e),
                     ),
                   )
                   .toList(),

@@ -7,8 +7,12 @@ class CreditCard {
   final String name;
   final String date;
   final String cvv;
-  final Color color;
-  final Color backgorund;
+  Color color;
+  Color background;
+  Color textColor;
+  Color titleColor;
+
+  final List<String> numberInputs = List<String>(4);
 
   CreditCard({
     this.id,
@@ -18,8 +22,22 @@ class CreditCard {
     this.date,
     this.cvv,
     this.color,
-    this.backgorund,
-  });
+    this.background,
+  }) {
+    textColor =
+        background.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+    titleColor = color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+  }
+
+  recalculateColors() {
+    textColor =
+        background.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+    titleColor = color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+  }
+
+  void updateNumber(int pos, String text) {
+    numberInputs[pos] = text;
+  }
 
   String getCardNumberSpaced() {
     StringBuffer sb = StringBuffer();
