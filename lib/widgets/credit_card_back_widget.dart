@@ -5,9 +5,9 @@ import 'package:mycards/widgets/abstract_card.dart';
 
 class CreditCardBackWidget extends StatelessWidget {
   final CreditCard card;
+  final double elevation;
 
-  CreditCardBackWidget(this.card, Function selectCard);
-  CreditCardBackWidget.noFunction(this.card);
+  CreditCardBackWidget({this.card, Function selectCard, this.elevation = 0});
 
   void cvvClipboard(BuildContext context) {
     Scaffold.of(context).removeCurrentSnackBar();
@@ -20,6 +20,7 @@ class CreditCardBackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AbstractCard(
+      elevation: elevation,
       card: card,
       children: [
         Flexible(

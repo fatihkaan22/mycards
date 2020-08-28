@@ -7,8 +7,9 @@ class AbstractCard extends StatelessWidget {
   final CreditCard card;
   // final Function _selectCard;
   final List<Widget> children;
+  final double elevation;
 
-  AbstractCard({this.card, this.children});
+  AbstractCard({this.card, this.children, this.elevation = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,13 @@ class AbstractCard extends StatelessWidget {
               child: Card(
                 color: card.background,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                elevation: 30,
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(
+                    width: 2,
+                    color: Colors.white38,
+                  ),
+                ),
+                elevation: elevation,
                 margin: EdgeInsets.only(bottom: 10),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

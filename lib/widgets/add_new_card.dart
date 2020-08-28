@@ -15,8 +15,8 @@ class NewCard extends StatefulWidget {
 
 class _NewCardState extends State<NewCard> {
   CreditCard card = CreditCard(
-    color: Colors.blue,
-    background: Colors.orange[700],
+    color: Colors.blueGrey[300],
+    background: Colors.blueGrey,
   );
 
   final titleController = TextEditingController();
@@ -133,7 +133,7 @@ class _NewCardState extends State<NewCard> {
           margin: EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-              Divider(),
+              Divider(thickness: 1),
               ListTile(
                 onTap: () => _chooseBackgroundColor(),
                 title: Text("Background Color"),
@@ -141,7 +141,7 @@ class _NewCardState extends State<NewCard> {
                   backgroundColor: card.background,
                 ),
               ),
-              Divider(),
+              Divider(thickness: 1),
               ListTile(
                 onTap: () => _chooseColor(),
                 title: Text("Primary Color"),
@@ -149,7 +149,7 @@ class _NewCardState extends State<NewCard> {
                   backgroundColor: card.color,
                 ),
               ),
-              Divider(),
+              Divider(thickness: 1),
             ],
           ),
         ),

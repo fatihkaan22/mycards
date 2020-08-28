@@ -14,7 +14,7 @@ class CardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Card(
-        elevation: 100,
+        elevation: 0,
         margin: EdgeInsets.only(left: 10, right: 10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: ClipPath(
@@ -34,8 +34,7 @@ class CardList extends StatelessWidget {
                       onTap: () {
                         _selectCard(e);
                       },
-                      // child: CreditCardWidget(e, _selectCard),
-                      child: CreditCardWidget(e),
+                      child: CreditCardWidget(card: e),
                     ),
                   )
                   .toList(),

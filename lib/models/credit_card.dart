@@ -26,13 +26,15 @@ class CreditCard {
   }) {
     textColor =
         background.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
-    titleColor = color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+    titleColor =
+        color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
   }
 
   recalculateColors() {
     textColor =
         background.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
-    titleColor = color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
+    titleColor =
+        color.computeLuminance() > 0.5 ? Colors.black87 : Colors.white70;
   }
 
   void updateNumber(int pos, String text) {
@@ -40,6 +42,7 @@ class CreditCard {
   }
 
   String getCardNumberSpaced() {
+    if (cardNumber.length != 12) return "";
     StringBuffer sb = StringBuffer();
     for (int i = 0; i <= 12; i += 4) {
       sb.write(cardNumber.substring(i, i + 4) + ' ');

@@ -5,9 +5,12 @@ import 'package:mycards/widgets/abstract_card.dart';
 
 class CreditCardWidget extends StatelessWidget {
   final CreditCard card;
-  // final Function _selectCard;
+  final bool selected;
+  final Function delete;
+  final double elevation;
 
-  CreditCardWidget(this.card);
+  CreditCardWidget(
+      {this.card, this.selected = false, this.delete, this.elevation = 0});
 
   void cardNumberClipboard(BuildContext context) {
     Scaffold.of(context).removeCurrentSnackBar();
@@ -27,28 +30,51 @@ class CreditCardWidget extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return AbstractCard(card: card, children: [
-      Flexible(
-        flex: 12,
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: card.color,
-              width: 3,
+    return AbstractCard(card: card, elevation: elevation, children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 12,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: card.color,
+                  width: 3,
+                ),
+                color: card.color,
+                borderRadius: BorderRadius.all(Radius.circular(18)),
+              ),
+              margin: EdgeInsets.all(4),
+              padding: EdgeInsets.all(5),
+              child: Text(
+                card.title,
+                style: TextStyle(
+                  color: card.titleColor,
+                  fontSize: 18,
+                ),
+              ),
             ),
-            color: card.color,
-            borderRadius: BorderRadius.all(Radius.circular(18)),
           ),
-          margin: EdgeInsets.all(4),
-          padding: EdgeInsets.all(5),
-          child: Text(
-            card.title,
-            style: TextStyle(
-              color: card.titleColor,
-              fontSize: 18,
+          if (selected)
+            Transform.scale(
+              scale: 0.8,
+              child: Ink(
+                decoration: ShapeDecoration(
+                  color: Colors.red,
+                  shape: CircleBorder(),
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.delete_outline,
+                    size: 30,
+                    color: card.titleColor,
+                  ),
+                  onPressed: () => delete(context),
+                ),
+              ),
             ),
-          ),
-        ),
+        ],
       ),
       Flexible(
         fit: FlexFit.loose,

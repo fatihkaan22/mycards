@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text("Card is removed."),
       action: SnackBarAction(
-        label: "Undo",
+        label: "UNDO",
         onPressed: () => addCardToList(backup),
       ),
     ));
@@ -131,8 +131,16 @@ class _HomeState extends State<Home> {
                     child: FlipCard(
                       key: cardKey,
                       direction: FlipDirection.HORIZONTAL,
-                      front: CreditCardWidget(selectedCard),
-                      back: CreditCardBackWidget.noFunction(selectedCard),
+                      front: CreditCardWidget(
+                        card: selectedCard,
+                        selected: true,
+                        delete: removeCardFromList,
+                        elevation: 30,
+                      ),
+                      back: CreditCardBackWidget(
+                        card: selectedCard,
+                        elevation: 30,
+                      ),
                     ),
                   ),
                 ),
@@ -169,48 +177,6 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.add),
         onPressed: () => startAddNewCard(context),
       ),
-
-      // floatingActionButton: SpeedDial(
-      //   // both default to 16
-      //   marginRight: 18,
-      //   marginBottom: 20,
-      //   animatedIcon: AnimatedIcons.menu_close,
-      //   animatedIconTheme: IconThemeData(size: 22.0),
-      //   // this is ignored if animatedIcon is non null
-      //   // child: Icon(Icons.add),
-      //   visible: true,
-      //   // If true user is forced to close dial manually
-      //   // by tapping main button and overlay is not rendered.
-      //   closeManually: false,
-      //   curve: Curves.bounceIn,
-      //   overlayColor: Colors.black,
-      //   overlayOpacity: 0.5,
-      //   onOpen: () => print('OPENING DIAL'),
-      //   onClose: () => print('DIAL CLOSED'),
-      //   tooltip: 'Menu',
-      //   heroTag: 'speed-dial-hero-tag',
-      //   backgroundColor: Colors.black,
-      //   foregroundColor: Colors.white,
-      //   elevation: 8.0,
-      //   shape: CircleBorder(),
-      //   children: [
-      //     SpeedDialChild(
-      //         child: Icon(Icons.add),
-      //         backgroundColor: Colors.black,
-      //         label: 'Add',
-      //         labelStyle: TextStyle(fontSize: 18.0),
-      //         onTap: () => startAddNewCard(context)),
-      //     SpeedDialChild(
-      //       child: Icon(Icons.delete),
-      //       backgroundColor: Colors.black,
-      //       label: 'Remove',
-      //       labelStyle: TextStyle(fontSize: 18.0),
-      //       onTap: () {
-      //         removeCardFromList(context);
-      //       },
-      //     ),
-      //   ],
-      // ),
     );
   }
 
