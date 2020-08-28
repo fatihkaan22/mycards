@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mycards/models/credit_card.dart';
 import 'package:mycards/widgets/credit_card_widget.dart';
+import 'dart:math' as math;
 
 class CardList extends StatelessWidget {
   final List<CreditCard> cards;
@@ -12,6 +13,59 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (cards.isEmpty) {
+      return Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 30),
+            child: Text(
+              "No cards added yet!",
+              style: TextStyle(
+                color: Colors.black54,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          Transform.rotate(
+            angle: -math.pi / 12,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.only(right: 40),
+              child: Icon(
+                Icons.credit_card,
+                size: 50,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+          Transform.rotate(
+            angle: math.pi / 12,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.only(left: 40),
+              child: Icon(
+                Icons.credit_card,
+                size: 50,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+          Transform.rotate(
+            angle: math.pi / 26,
+            child: Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.only(right: 20),
+              child: Icon(
+                Icons.credit_card,
+                size: 50,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Flexible(
       child: Card(
         elevation: 0,
